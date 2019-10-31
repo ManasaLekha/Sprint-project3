@@ -37,4 +37,14 @@ public class UserServiceImplTest
         assertThat( foundUser.getId() ).isEqualTo( id );
         assertThat( foundUser.getName() ).isEqualTo( name );
     }
+
+    @Test
+    public void getUserReturnsNullWhenUserNotFound()
+    {
+        String id = "1";
+        when( userRepository.findById( id ) ).thenReturn( Optional.empty() );
+        userService = new UserServiceImpl( userRepository );
+        User foundUser = userService.getUser( id );
+        assertThat( foundUser ).isNull();
+    }
 }
