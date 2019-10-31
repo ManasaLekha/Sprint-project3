@@ -3,7 +3,6 @@ package com.generation.org.apidemo.controller;
 
 import com.generation.org.apidemo.model.User;
 import com.generation.org.apidemo.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController
 {
 
-    @Autowired
-    UserService userService;
+
+    private final UserService userService;
+
+    public UserController( UserService userService )
+    {
+        this.userService = userService;
+    }
 
     @GetMapping( "/user/{id}" )
     public User getUser( @PathVariable String id )

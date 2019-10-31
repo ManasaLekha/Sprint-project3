@@ -2,7 +2,6 @@ package com.generation.org.apidemo.service;
 
 import com.generation.org.apidemo.model.User;
 import com.generation.org.apidemo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,8 +11,13 @@ import java.util.Optional;
 public class UserServiceImpl
     implements UserService
 {
-    @Autowired
-    protected UserRepository userRepository;
+
+    private final UserRepository userRepository;
+
+    public UserServiceImpl( UserRepository userRepository )
+    {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public User getUser( String id )
